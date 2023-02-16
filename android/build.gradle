@@ -150,7 +150,7 @@ dependencies {
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation "ru.rustore.sdk:billingclient:0.1.1"
+  implementation "ru.rustore.sdk:billingclient:0.1.7"
   implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
 // From node_modules
 }
