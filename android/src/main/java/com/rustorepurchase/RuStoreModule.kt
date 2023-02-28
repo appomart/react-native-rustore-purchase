@@ -17,10 +17,9 @@ class RuStoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJav
       val applicationId = ai.metaData["applicationId"]
 
       RuStoreBillingClient.init(
-        appContext = reactContext,
-        applicationId = applicationId, //идентификатор приложения;
+        application = reactContext,
         consoleApplicationId = consoleApplicationId, //код приложения из системы RuStore Консоль;
-        deeplinkPrefix = deeplinkPrefix //URL для использования deeplink.
+        deeplinkScheme = deeplinkPrefix //URL для использования deeplink.
       )
     }
 
@@ -34,7 +33,7 @@ class RuStoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJav
                     val productsResponse: ProductsResponse =
                         RuStoreBillingClient.products.getProducts(
                             productIds = productIds //список идентификаторов продуктов.
-                        )
+                        ).await()
 
                     callback.invoke(productsResponse)
                 }
