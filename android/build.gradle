@@ -10,9 +10,6 @@ buildscript {
       maven {
            url "https://jitpack.io"
        }
-      flatDir {
-            dirs("libs")
-        }
   }
 
   dependencies {
@@ -64,6 +61,12 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
 
+  sourceSets {
+    main {
+       jniLibs.srcDirs = ['libs']
+    }
+  }
+
 }
 
 repositories {
@@ -74,9 +77,7 @@ repositories {
   maven {
            url "https://jitpack.io"
        }
-  flatDir {
-            dirs("libs")
-        }
+
   def found = false
   def defaultDir = null
   def androidSourcesName = 'React Native sources'
@@ -146,8 +147,9 @@ repositories {
 def kotlin_version = getExtOrDefault('kotlinVersion')
 
 dependencies {
-  implementation(name:'billingclient', ext:'aar')
+  //implementation(name:'billingclient', ext:'aar')
   implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation (files("libs/billingclient.aar"))
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
