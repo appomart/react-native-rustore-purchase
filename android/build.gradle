@@ -150,6 +150,7 @@ dependencies {
   //implementation(name:'billingclient', ext:'aar')
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation (files("libs/billingclient.aar"))
+  implementation (files("libs/core.aar"))
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

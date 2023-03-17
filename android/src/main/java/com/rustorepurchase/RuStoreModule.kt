@@ -6,6 +6,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import ru.rustore.sdk.billingclient.RuStoreBillingClient
 import ru.rustore.sdk.billingclient.model.product.ProductsResponse
+import ru.rustore.sdk.core.tasks.OnCompleteListener
 
 class RuStoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
@@ -26,7 +27,7 @@ class RuStoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJav
     override fun getName() = "RuStoreModule"
 
     //Получение актуальной информации по списку продуктов
-    @ReactMethod public fun getProducts(productIds: List<String>, callback: Callback, callbackError: Callback){
+    /*@ReactMethod public fun getProducts(productIds: List<String>, callback: Callback, callbackError: Callback){
         try {
             runBlocking {
                 withContext(Dispatchers.IO) {
@@ -38,6 +39,23 @@ class RuStoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJav
                     callback.invoke(productsResponse)
                 }
             }
-        }catch (Exceptin ex){callbackError.invoke(ex.getMessage())}
+        }catch (ex: Exception){callbackError.invoke(ex.getMessage())}
+    }*/
+
+    @ReactMethod public fun getProducts(productIds: List<String>, callback: Callback, callbackError: Callback){
+        RuStoreBillingClient.products.getProducts(productIds = productIds)
+            .addOnCompleteListener(object : OnCompleteListener<ProductsResponse> {
+                override fun onSuccess(result: ProductsResponse) {
+                    callback.invoke(result)
+                }
+
+                override fun onFailure(throwable: Throwable) {
+                    // Process error
+                    if(throwable.message != null && throwable.message!!.isNotEmpty())
+                        callbackError.invoke(throwable.message)
+                    else if(throwable.cause != null && throwable.cause!!.message != null && throwable.cause!!.message!!.isNotEmpty())
+                        callbackError.invoke(throwable.cause!!.message)
+                }
+            })
     }
 }
