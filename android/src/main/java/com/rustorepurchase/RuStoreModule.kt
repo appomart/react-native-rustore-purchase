@@ -8,6 +8,11 @@ import ru.rustore.sdk.billingclient.RuStoreBillingClient
 import ru.rustore.sdk.billingclient.model.product.ProductsResponse
 import ru.rustore.sdk.core.tasks.OnCompleteListener
 
+import android.content.pm.PackageManager
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactContext
+import com.facebook.react.bridge.ReactContextBaseJavaModule
+
 class RuStoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
     init {
