@@ -16,14 +16,14 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule
 class RuStoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
     init {
-      val ai: ApplicationInfo = reactContext.packageManager
+      val ai = reactContext.packageManager
         .getApplicationInfo(reactContext.packageName, PackageManager.GET_META_DATA)
       val consoleApplicationId = ai.metaData["consoleApplicationId"]
       val deeplinkPrefix = ai.metaData["deeplinkPrefix"]
       val applicationId = ai.metaData["applicationId"]
 
       RuStoreBillingClient.init(
-        application = reactContext,
+        application = reactContext.getApplicationContext(),
         consoleApplicationId = consoleApplicationId, //код приложения из системы RuStore Консоль;
         deeplinkScheme = deeplinkPrefix //URL для использования deeplink.
       )
