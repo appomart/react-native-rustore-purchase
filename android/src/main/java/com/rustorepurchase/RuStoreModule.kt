@@ -16,7 +16,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule
 class RuStoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
     init {
-      val ai = reactContext.packageManager
+      /*val ai = reactContext.packageManager
         .getApplicationInfo(reactContext.packageName, PackageManager.GET_META_DATA)
       val consoleApplicationId = ai.metaData["consoleApplicationId"]
       val deeplinkPrefix = ai.metaData["deeplinkPrefix"]
@@ -26,7 +26,7 @@ class RuStoreModule(reactContext: ReactApplicationContext) : ReactContextBaseJav
         application = reactContext.getApplicationContext(),
         consoleApplicationId = consoleApplicationId, //код приложения из системы RuStore Консоль;
         deeplinkScheme = deeplinkPrefix //URL для использования deeplink.
-      )
+      )*/
     }
 
     override fun getName() = "RuStoreModule"
