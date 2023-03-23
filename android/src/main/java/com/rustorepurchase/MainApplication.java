@@ -43,10 +43,10 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
 
-    RuStoreBillingClient.init(
-            application = this,
-            consoleApplicationId = "454501311", //код приложения из системы RuStore Консоль;
-            deeplinkScheme = "yourappscheme://iamback" //URL для использования deeplink.
-    )
+	RuStoreBillingClient.INSTANCE.init(
+                this,//идентификатор приложения;
+                "454501311", //код приложения из системы RuStore Консоль;
+                "yourappscheme://iamback" //URL для использования deeplink.
+        );
   }
 }
