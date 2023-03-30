@@ -1,9 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.rustorepurchase">
+          package="com.rustorepurchase"
+          xmlns:tools="http://schemas.android.com/tools">
 
    <uses-permission android:name="android.permission.INTERNET" />
 
-   <application android:name=".MainApplication" >
+   <uses-sdk tools:overrideLibrary="ru.rustore.sdk.billingclient"/>
+
+   <application>
         <!--<meta-data android:name="consoleApplicationId" android:value="com.appomart.retry"/>
         <meta-data android:name="deeplinkPrefix" android:value="454501311"/>
         <meta-data android:name="applicationId" android:value="yourappscheme://iamback"/>-->
